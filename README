@@ -1,0 +1,11 @@
+Avatars
+-------
+
+A simple, cpu-friendly screensaver
+
+The Avatars program draws a selected image at a random position
+on the screen. After a defined delay the image disappears to show
+up at a new position.
+
+Written by Dan Luedtke (danrl); 2011.
+
