@@ -21,31 +21,36 @@ Zawinski <jwz@jwz.org>.
 1.	Download xscreensaver sources by Jamie Zawinski from
 	http://www.jwz.org/xscreensaver/ and extract the source files.
 
-	  `$ wget http://www.jwz.org/xscreensaver/xscreensaver-5.15.tar.gz`
-	  `$ tar -xvzf xscreensaver-5.15.tar.gz`
+* `$ wget http://www.jwz.org/xscreensaver/xscreensaver-5.15.tar.gz`
+* `$ tar -xvzf xscreensaver-5.15.tar.gz`
 
 2.	Get the xscreensaver-avatars sources and merge them with your
 	xscreensaver hacks folder.
 
-	  `$ git clone git://github.com/danrl/xscreensaver-avatars.git`
-	  `$ cp -r xscreensaver-avatars/* xscreensaver-5.15/hacks/`
+* `$ git clone git://github.com/danrl/xscreensaver-avatars.git`
+* `$ cp -r xscreensaver-avatars/* xscreensaver-5.15/hacks/`
 
 3.	Edit ./hacks/Makefile.in as follows:
 
-	-  add "avatars.c" to variable SRCS
-	-  add "avatars.o" to variable OBJS
-	-  add "avatars" to variable EXES
-	-  add the following lines where the others build-targets are
+* add `avatars.c` to variable SRCS
 
-	  avatars:	avatars.o	$(HACK_OBJS) $(XPM)
-	  	$(CC_HACK) -o $@ $@.o	$(HACK_OBJS) $(XPM) $(XPM_LIBS) $(HACK_LIBS)`
+* add `avatars.o` to variable OBJS
+
+* add `avatars` to variable EXES
+
+* add the following lines where the others build-targets are
+
+
+    avatars:	avatars.o	$(HACK_OBJS) $(XPM)
+        $(CC_HACK) -o $@ $@.o	$(HACK_OBJS) $(XPM) $(XPM_LIBS) $(HACK_LIBS)
+
 
 4.	Configure, compile, and install!
 
-	  `$ ./configure`
-	  `$ make distdepend`
-	  `$ make`
-	  `# make install`
+* `$ ./configure`
+* `$ make distdepend`
+* `$ make`
+* `# make install`
 
 
 ## License
