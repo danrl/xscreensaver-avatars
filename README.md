@@ -35,10 +35,11 @@ Zawinski <jwz@jwz.org>.
 
 
 -  **Edit ./hacks/Makefile.in** 
-	-  add `avatars.c` to variable SRCS
-	-  add `avatars.o` to variable OBJS
-	-  add `avatars` to variable EXES
-	-  add the following lines where the others build-targets are
+	-  add `avatars.c` to variable `SRCS`
+	-  add `avatars.o` to variable `OBJS`
+	-  add `avatars` to variable `EXES`
+	-  add the following lines where the others build-targets are:
+
 	    avatars:	avatars.o	$(HACK_OBJS) $(XPM)
 	    	$(CC_HACK) -o $@ $@.o	$(HACK_OBJS) $(XPM) $(XPM_LIBS) $(HACK_LIBS)
 
