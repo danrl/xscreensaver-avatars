@@ -18,39 +18,37 @@ Zawinski <jwz@jwz.org>.
 
 ## Install
 
-1.	Download xscreensaver sources by Jamie Zawinski from
-	http://www.jwz.org/xscreensaver/ and extract the source files.
+-  **Download xscreensaver** 
 
-* `$ wget http://www.jwz.org/xscreensaver/xscreensaver-5.15.tar.gz`
-* `$ tar -xvzf xscreensaver-5.15.tar.gz`
+	Download xscreensaver sources by Jamie Zawinski from http://www.jwz.org/xscreensaver/ and extract the source files.
 
-2.	Get the xscreensaver-avatars sources and merge them with your
-	xscreensaver hacks folder.
-
-* `$ git clone git://github.com/danrl/xscreensaver-avatars.git`
-* `$ cp -r xscreensaver-avatars/* xscreensaver-5.15/hacks/`
-
-3.	Edit ./hacks/Makefile.in as follows:
-
-* add `avatars.c` to variable SRCS
-
-* add `avatars.o` to variable OBJS
-
-* add `avatars` to variable EXES
-
-* add the following lines where the others build-targets are
+	    $ wget http://www.jwz.org/xscreensaver/xscreensaver-5.15.tar.gz
+	    $ tar -xvzf xscreensaver-5.15.tar.gz
 
 
-    avatars:	avatars.o	$(HACK_OBJS) $(XPM)
-        $(CC_HACK) -o $@ $@.o	$(HACK_OBJS) $(XPM) $(XPM_LIBS) $(HACK_LIBS)
+-  **Download xscreensaver-avatars** 
+
+	Get the latest xscreensaver-avatars sources and merge them with your xscreensaver hacks folder.
+
+	    $ git clone git://github.com/danrl/xscreensaver-avatars.git
+	    $ cp -r xscreensaver-avatars/* xscreensaver-5.15/hacks/
 
 
-4.	Configure, compile, and install!
+-  **Edit ./hacks/Makefile.in** 
+	-  add `avatars.c` to variable SRCS
+	-  add `avatars.o` to variable OBJS
+	-  add `avatars` to variable EXES
+	-  add the following lines where the others build-targets are
+	    avatars:	avatars.o	$(HACK_OBJS) $(XPM)
+	    	$(CC_HACK) -o $@ $@.o	$(HACK_OBJS) $(XPM) $(XPM_LIBS) $(HACK_LIBS)
 
-* `$ ./configure`
-* `$ make distdepend`
-* `$ make`
-* `# make install`
+
+-  **Configure, compile, and install!** 
+
+	    $ ./configure
+	    $ make distdepend
+	    $ make
+	    # make install
 
 
 ## License
