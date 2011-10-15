@@ -19,9 +19,8 @@ struct state {
 	int delay;
 	XWindowAttributes wa;
 	GC gc;
+	XImage *image;
 };
-
-XImage *image;
 
 static void *
 avatars_init(Display *display, Window window) {
@@ -31,13 +30,13 @@ avatars_init(Display *display, Window window) {
 	XGetWindowAttributes(display, window, &st->wa);
 	st->gc = XCreateGC(display, window, 0, NULL);
 	if(selected_image==1) {
-		XpmCreateImageFromData(display, avatars_danrl_xpm, &image, NULL, NULL);
+		XpmCreateImageFromData(display, avatars_danrl_xpm, &st->image, NULL, NULL);
 	}
 	else if(selected_image==2) {
-		XpmCreateImageFromData(display, avatars_getadrink_xpm, &image, NULL, NULL);
+		XpmCreateImageFromData(display, avatars_getadrink_xpm, &st->image, NULL, NULL);
 	}
 	else {
-		XpmCreateImageFromData(display, avatars_penguin_xpm, &image, NULL, NULL);
+		XpmCreateImageFromData(display, avatars_penguin_xpm, &st->image, NULL, NULL);
 	}
 
 	return st;
@@ -46,13 +45,13 @@ avatars_init(Display *display, Window window) {
 static unsigned long
 avatars_draw (Display *display, Window window, void *closure) {
 	struct state *st = (struct state *) closure;
-	
+
 	XClearWindow(display, window);
-	XPutImage(display, window, st->gc, image, 0, 0,
-		random()%(st->wa.width - image->width),
-		random()%(st->wa.height - image->height),
-		image->width,
-		image->height);
+	XPutImage(display, window, st->gc, st->image, 0, 0,
+		random()%(st->wa.width - (st->image)->width),
+		random()%(st->wa.height - (st->image)->height),
+		(st->image)->width,
+		(st->image)->height);
 	return 1000000 * st->delay;
 }
 
@@ -60,7 +59,7 @@ static void
 avatars_reshape(Display *display, Window window, void *closure, 
 				unsigned int width, unsigned int height) {
 	struct state *st = (struct state *) closure;
-	
+
 	st->wa.width = width;
 	st->wa.height = height;
 }
@@ -68,16 +67,13 @@ avatars_reshape(Display *display, Window window, void *closure,
 static Bool
 avatars_event(Display *display, Window window, void *closure,
 				XEvent *event) {
-  return False;
+	return False;
 }
 
 static void
-avatars_free (Display *display, Window window, void *closure)
-{
-  struct state *st = (struct state *) closure;
-  
-  free(st);
-  free(image);
+avatars_free (Display *display, Window window, void *closure) {
+	struct state *st = (struct state *) closure;
+	free(st);
 }
 
 static const char *avatars_defaults [] = {
