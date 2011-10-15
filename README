@@ -1,11 +1,41 @@
-Avatars
--------
+README
+------
 
-A simple, cpu-friendly screensaver
+avatars - a simple, cpu-friendly screensaver
 
 The Avatars program draws a selected image at a random position
 on the screen. After a defined delay the image disappears to show
 up at a new position.
 
-Written by Dan Luedtke (danrl); 2011.
+Written by Dan Luedtke; 2011.
 
+Homepage: http://www.danrl.de
+
+INSTALL
+-------
+
+1.)
+	Download xscreensaver sources by Jamie Zawinski from
+	http://www.jwz.org/xscreensaver/ and extract the source files.
+
+	$ wget http://www.jwz.org/xscreensaver/xscreensaver-5.15.tar.gz
+
+2.)
+	Get the xscreensaver-avatars sources and merge them with your xscreensaver folder.
+
+	$ cd xscreensaver-5.15
+	$ git clone git://github.com/danrl/xscreensaver-avatars.git ./
+
+4.)
+	Edit ./hacks/Makefile.in and add the following lines:
+
+	avatars:	avatars.o	$(HACK_OBJS) $(XPM)
+		$(CC_HACK) -o $@ $@.o	$(HACK_OBJS) $(XPM) $(XPM_LIBS) $(HACK_LIBS)
+
+5.)
+	Configure, compile, and install!
+
+	$ ./configure
+	$ make distdepend
+	$ make
+	# make install

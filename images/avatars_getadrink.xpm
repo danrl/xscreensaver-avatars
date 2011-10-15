@@ -1,5 +1,5 @@
 /* XPM */
-static char * getadrink_xpm[] = {
+static char * avatars_getadrink_xpm[] = {
 "320 256 352 2",
 "  	c #800000",
 ". 	c #803200",

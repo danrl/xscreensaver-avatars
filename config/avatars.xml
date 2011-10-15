@@ -8,9 +8,15 @@
 		_label="Delay" _low-label="Low" _high-label="High"
 		low="0" high="120" default="6"/>
 
+	<select id="image">
+		<option id="penguin" _label="Penguin"/>
+		<option id="danrl" _label="Alien" arg-set="-image 1"/>
+		<option id="getadrink" _label="Get a drink" arg-set="-image 2"/>
+	</select>
+
 	<_description>
 A simple, cpu-friendly screensaver.
 
-Written by Dan Luedtke (danrl); 2011.
+Written by Dan Luedtke; 2011.
 	</_description>
 </screensaver>

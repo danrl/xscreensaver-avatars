@@ -11,27 +11,36 @@
 
 #include "screenhack.h"
 #include <stdio.h>
-#include "images/avatars-danrl.xpm"
-#include "images/avatars-penguin.xpm"
-#include "images/avatars-getadrink.xpm"
+#include "images/avatars_penguin.xpm"
+#include "images/avatars_danrl.xpm"
+#include "images/avatars_getadrink.xpm"
 
 struct state {
 	int delay;
 	XWindowAttributes wa;
 	GC gc;
-	XImage *image;
 };
 
+XImage *image;
 
 static void *
 avatars_init(Display *display, Window window) {
 	struct state *st = (struct state *) calloc (1, sizeof(*st));
-
+	int selected_image = get_integer_resource(display, "image", "Integer");
 	st->delay = get_integer_resource(display, "delay", "Integer");
 	XGetWindowAttributes(display, window, &st->wa);
 	st->gc = XCreateGC(display, window, 0, NULL);
-	XpmCreateImageFromData(display, getadrink_xpm, &st->image, NULL, NULL);
-	/* st->image = xpm_to_ximage(display, st->wa.visual, st.wa->colormap, getadrink_xpm); */
+	if(selected_image==1) {
+		XpmCreateImageFromData(display, avatars_danrl_xpm, &image, NULL, NULL);
+	}
+	else if(selected_image==2) {
+		XpmCreateImageFromData(display, avatars_getadrink_xpm, &image, NULL, NULL);
+	}
+	else {
+		XpmCreateImageFromData(display, avatars_penguin_xpm, &image, NULL, NULL);
+	}
+
+	return st;
 }
 
 static unsigned long
@@ -39,11 +48,11 @@ avatars_draw (Display *display, Window window, void *closure) {
 	struct state *st = (struct state *) closure;
 	
 	XClearWindow(display, window);
-	XPutImage(display, window, st->gc, st->image, 0, 0,
-		random()%(st->wa.width - st->image->width),
-		random()%(st->wa.height - st->image->height),
-		st->image->width,
-		st->image->height);
+	XPutImage(display, window, st->gc, image, 0, 0,
+		random()%(st->wa.width - image->width),
+		random()%(st->wa.height - image->height),
+		image->width,
+		image->height);
 	return 1000000 * st->delay;
 }
 
@@ -68,19 +77,21 @@ avatars_free (Display *display, Window window, void *closure)
   struct state *st = (struct state *) closure;
   
   free(st);
+  free(image);
 }
 
 static const char *avatars_defaults [] = {
 	".background:		black",
 	".foreground:		white",
-	"*delay:			3",
+	"*delay:			6",
+	"*image:			0",
 	0
 };
 
 static XrmOptionDescRec avatars_options [] = {
 	{ "-delay",			".delay",	XrmoptionSepArg, 0 },
+	{ "-image",			".image",	XrmoptionSepArg, 0 },
 	{ 0, 0, 0, 0 }
 };
-
 
 XSCREENSAVER_MODULE ("Avatars", avatars)
