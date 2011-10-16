@@ -1,11 +1,11 @@
 # xscreensaver-avatars
 
-avatars - a simple, cpu-friendly screensaver
+xscreensaver-avatars - a simple, cpu-friendly xscreensaver-module.
 
 
 ## About
 
-The Avatars program draws a selected image at a random position
+The xscreensaver-avatars program draws a selected image at a random position
 on the screen. After a defined delay the image disappears to show
 up at a new position.
 
