@@ -166,7 +166,12 @@ avatars_event(Display *display, Window window, void *closure,
 static void
 avatars_free (Display *display, Window window, void *closure) {
 	struct state *st = (struct state *) closure;
+	int k;
 
+	XDestroyImage(st->image);
+		for (k = 0; k < AVATARS_FADE_STEPS; k++) {
+		XDestroyImage(st->op[k]);
+	}
 	free(st);
 }
 
