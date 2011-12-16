@@ -1,4 +1,4 @@
-.TH XScreenSaver 1 "15-Oct-2011" "X Version 11"
+.TH XScreenSaver 1 "16-Dec-2011" "X Version 11"
 .SH NAME
 avatars - a simple, cpu-friendly screensaver
 .SH SYNOPSIS
@@ -9,13 +9,16 @@ avatars - a simple, cpu-friendly screensaver
 [\-mono]
 [\-install]
 [\-visual \fIvisual\fP]
-[\-delay \fIseconds\fP]
+[\-show \fIseconds\fP]
+[\-blank \fIseconds\fP]
+[\-fade \fIseconds\fP]
 [\-image \fInumber\fP]
 [\-fps]
 .SH DESCRIPTION
-The \fIavatars\fP program draws a selected image on a random position
-on the screen. After a defined delay the image disappears to show
-up at a new position.
+The \fIavatars\fP program draws an avatar or a logo on a random position
+on the screen. After a defined delay the image disappears just to show
+up at a new position. Frames are precalculated at start, so the screensaver can
+run for hours without eating up your cpu power.
 .SH OPTIONS
 .I avatars
 accepts the following options:
@@ -36,11 +39,17 @@ Install a private colormap for the window.
 Specify which visual to use.  Legal values are the name of a visual class,
 or the id number (decimal or hex) of a specific visual.
 .TP 8
-.B \-delay \fIseconds\fP
-How long until re-positioning.  Default 6 seconds.
+.B \-show \fIseconds\fP
+How long an avatar is displayed.  Default 6 seconds.
+.TP 8
+.B \-blank \fIseconds\fP
+How long the screen is blank between fading out and fading in.  Default 1 second.
+.TP 8
+.B \-fade \fIseconds\fP
+How long fading in/out lasts.  Default 1 second.
 .TP 8
 .B \-image \fInumber\fP
-Selects image to be used. Default 0. (0=Penguin, 1=Alien, 2=Get A Drink Meme)
+Selects image to be used. Default 0. (0=Penguin, 1=Alien, 2=Your Logo)
 .TP 8
 .B \-fps
 Display the current frame rate and CPU load.

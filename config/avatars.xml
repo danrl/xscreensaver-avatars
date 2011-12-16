@@ -4,14 +4,22 @@
 
 	<command arg="-root"/>
 
+	<number id="show" type="slider" arg="-show %"
+		_label="Showtime" _low-label="Short" _high-label="Long"
+		low="1" high="60" default="6"/>
+
 	<number id="delay" type="slider" arg="-delay %"
-		_label="Delay" _low-label="Low" _high-label="High"
-		low="1" high="120" default="6"/>
+		_label="Blanktime" _low-label="Short" _high-label="Long"
+		low="1" high="60" default="1"/>
+
+	<number id="delay" type="slider" arg="-delay %"
+		_label="Fadetime" _low-label="Short" _high-label="Long"
+		low="1" high="10" default="1"/>
 
 	<select id="image">
 		<option id="penguin" _label="Penguin"/>
 		<option id="danrl" _label="Alien" arg-set="-image 1"/>
-		<option id="getadrink" _label="Get a drink" arg-set="-image 2"/>
+		<option id="yourlogo" _label="Logo" arg-set="-image 2"/>
 	</select>
 
 	<_description>
